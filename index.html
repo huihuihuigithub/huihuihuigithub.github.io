@@ -172,7 +172,47 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2><ol>
+<li>node.js</li>
+<li>git</li>
+</ol>
+<h2 id="安装hexo博客框架"><a href="#安装hexo博客框架" class="headerlink" title="安装hexo博客框架"></a>安装hexo博客框架</h2><ol>
+<li>安装命令行: cnpm install -g hexo-cli</li>
+<li>查看版本: hexo -v</li>
+</ol>
+<h2 id="使用hexo搭建博客"><a href="#使用hexo搭建博客" class="headerlink" title="使用hexo搭建博客"></a>使用hexo搭建博客</h2><ol>
+<li>建立项目文件夹: mkdir 文件夹名字(如:mkdir blog)</li>
+<li>进入项目文件夹: cd 文件夹名字(如:cd blog)</li>
+<li>使用hexo生成博客(初始化博客): sudo hexo init (sudo表示用管理员命令来执行)</li>
+<li>启动博客: hexo s ( localhost:4000 查看)</li>
+<li>创建文章: hexo n “你的文章标题”</li>
+<li>编辑文章: 使用vim、Markdown编辑器或者VSCode编辑</li>
+<li>重新生成文章: 回到项目文件夹目录下,先清理 hexo clean,再重生成 hexo g</li>
+</ol>
+<h2 id="把博客部署到github"><a href="#把博客部署到github" class="headerlink" title="把博客部署到github"></a>把博客部署到github</h2><ol>
+<li>github注册(注意:注册的账户名在下一步要用在仓库名字上,而仓库名字是你的博客网址,好好起名字哦~)</li>
+<li>新建一个github仓库(Create a new repository)<ul>
+<li>仓库名字(Repository name):命名格式必须是” github账户名.github.io “</li>
+<li>描述是可选项</li>
+</ul>
+</li>
+<li>在项目文件夹下安装git部署的插件: cnpm install –save hexo-deployer-git</li>
+<li>设置_config.yml文件.在项目文件夹目录下找到_config.yml文件,使用vscode等编辑器打开.按照如下配置Deployment: <ul>
+<li>type: git</li>
+<li>repo: 你的github仓库地址</li>
+<li>branch: master</li>
+</ul>
+</li>
+<li>部署到远端: hexo d(中途会要求输入github账号密码)</li>
+<li>访问博客:你的仓库名字就是博客网址</li>
+</ol>
+<h2 id="自定义博客主题"><a href="#自定义博客主题" class="headerlink" title="自定义博客主题"></a>自定义博客主题</h2><ol>
+<li>找到喜欢的主题</li>
+<li>下载主题: git clone 主题网址 themes/主题名字</li>
+<li>修改主题: _config.yml文件里找到theme,修改成 theme: 主题名</li>
+<li>推到远端: hexo d</li>
+</ol>
+
       
 
       
