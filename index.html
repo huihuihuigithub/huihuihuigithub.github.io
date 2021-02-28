@@ -13,7 +13,7 @@
 <meta property="og:url" content="http://example.com/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:locale" content="en_US">
-<meta property="article:author" content="John Doe">
+<meta property="article:author" content="Hui">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -43,10 +43,10 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="" class="js-avatar">
+			<img src="assets/avatar.jpeg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/"></a></h1>
+		  <h1 class="header-author"><a href="/">慧慧慧</a></h1>
 		</hgroup>
 		
 
@@ -55,18 +55,16 @@
 			
 				<li><a href="/">主页</a></li>
 	        
-				<li><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
+				<li><a href="/tags/React/">最新文章</a></li>
 	        
 			</ul>
 		</nav>
 		<nav class="header-smart-menu">
     		
     			
-    			<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有文章</a>
-    			
             
     			
-    			<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友链</a>
+    			<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">文章分类</a>
     			
             
     			
@@ -77,7 +75,7 @@
 		<nav class="header-nav">
 			<div class="social">
 				
-					<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
+					<a class="github" target="_blank" href="https://github.com/huihuihuigithub" title="github"><i class="icon-github"></i></a>
 		        
 					<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
 		        
@@ -101,10 +99,10 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="" class="js-avatar">
+				<img src="assets/avatar.jpeg" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author"></h1>
+			  <h1 class="header-author js-header-author">慧慧慧</h1>
 			</hgroup>
 			
 			
@@ -118,7 +116,7 @@
 			<nav class="header-nav">
 				<div class="social">
 					
-						<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
+						<a class="github" target="_blank" href="https://github.com/huihuihuigithub" title="github"><i class="icon-github"></i></a>
 			        
 						<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
 			        
@@ -135,7 +133,7 @@
 				
 					<li style="width: 50%"><a href="/">主页</a></li>
 		        
-					<li style="width: 50%"><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
+					<li style="width: 50%"><a href="/tags/React/">最新文章</a></li>
 		        
 				</ul>
 			</nav>
@@ -151,6 +149,820 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-React-Hooks网站开发实战" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/02/27/React-Hooks%E7%BD%91%E7%AB%99%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98/">React Hooks网站开发实战</a>
+    </h1>
+  
+
+        
+        <a href="/2021/02/27/React-Hooks%E7%BD%91%E7%AB%99%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98/" class="archive-article-date">
+  	<time datetime="2021-02-27T13:13:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-项目前端开发环境搭建"><a href="#1-项目前端开发环境搭建" class="headerlink" title="1. 项目前端开发环境搭建"></a>1. 项目前端开发环境搭建</h2><p>1.安装 Next.js 的脚手架工具  create-next-app : <code>npm install -g create-next-app</code><br>2.创建总目录文件夹: <code>mkdir react_blog</code><br>3.进入总目录文件夹,使用npx安装前端目录文件夹:<br>    - <code>cd react_blog</code><br>    -  <code>npx create-next-app blog</code><br>4.测试: <code>yarn dev</code> (<a target="_blank" rel="noopener" href="http://localhost:3000/">http://localhost:3000/</a> 查看)<br>5.用VSCode打开blog,删除不需要的默认文件和代码<br>6.修改首页page/index.js</p>
+<pre><code>  import React from &#39;react&#39;
+    import Head from &#39;next/head&#39;
+    
+    const Home = () =&gt; (
+     &lt;&gt;
+     &lt;Head&gt;
+          &lt;title&gt;Home&lt;/title&gt;
+     &lt;/Head&gt;
+        &lt;/&gt;
+    )
+    export default Home 
+  
+</code></pre>
+<p>7.安装@zeit/next-css包，让Next.js可以加载CSS文件:<code>yarn add @zeit/next-css</code><br>8.blog目录下，新建一个next.config.js文件。这个就是Next.js的总配置文件。写入下面的代码:</p>
+<pre><code>    const withCss = require(&#39;@zeit/next-css&#39;)
+
+    if(typeof require !== &#39;undefined&#39;)&#123;
+    require.extensions[&#39;.css&#39;]=file=&gt;&#123;&#125;
+    &#125;
+
+    module.exports = withCss(&#123;&#125;)
+</code></pre>
+<p>9.按需加载 Ant Design<br>    - <code>yarn add antd</code><br>    - <code>yarn add babel-plugin-import</code><br>    - blog目录建立.babelrc文件，然后写入如下配置文件</p>
+<pre><code>          &#123;
+             &quot;presets&quot;:[&quot;next/babel&quot;],  //Next.js的总配置文件，相当于继承了它本身的所有配置
+             &quot;plugins&quot;:[     //增加新的插件，这个插件就是让antd可以按需引入，包括CSS
+                  [
+                      &quot;import&quot;,
+                      &#123;
+                         &quot;libraryName&quot;:&quot;antd&quot;
+                      &#125;
+                   ]
+                 ]
+              &#125;
+- 在pages目录下，新建一个_app.js文件，然后把CSS进行全局引入
+
+        import App from &#39;next/app&#39;
+
+        import &#39;antd/dist/antd.css&#39;
+
+        export default App
+        
+        
+</code></pre>
+<h2 id="2-公用背景和头部组件"><a href="#2-公用背景和头部组件" class="headerlink" title="2. 公用背景和头部组件"></a>2. 公用背景和头部组件</h2><p>1.在style文件夹下新建两个文件夹/pages和/components，然后在/pages文件夹下新建立comm.css文件。以后只要每个页面都用到的CSS样式，都放入这个文件中。建立文件后，写入下面的CSS样式，就是把背景设置成浅灰色。</p>
+<pre><code>    body&#123;
+    background-color: #f6f6f6;  
+    &#125;
+</code></pre>
+<p>2.修改/pages/_app.js引入这个CSS，这个文件引入后，每个页面都会起作用</p>
+<pre><code>    import App from &#39;next/app&#39;
+    import &#39;antd/dist/antd.css&#39;
+    import &#39;../static/style/pages/comm.css&#39;
+
+    export default App
+</code></pre>
+<p>3.组件开发 -头部组件(Header.js)</p>
+<p>-先在/blog/components/目录下新建一个Header.js文件</p>
+<pre><code>import React from ‘react’
+import &#39;../styles/components/header.css&#39;
+import&#123;Row,Col,Menu&#125;from &#39;antd&#39;
+import &#123;HomeOutlined,SmileOutlined&#125; from &#39;@ant-design/icons&#39;
+        
+        const Header=()=&gt;(
+          &lt;div className=&quot;header&quot;&gt;
+            &lt;Row type=&quot;flex&quot; justify=&quot;center&quot;&gt;
+              &lt;Col xs=&#123;24&#125; sm=&#123;24&#125; md=&#123;10&#125; lg=&#123;15&#125; xl=&#123;12&#125;&gt;
+              &lt;span className=&quot;header-logo&quot;&gt;慧慧慧&lt;/span&gt;
+              &lt;span className=&quot;header-txt&quot;&gt;记录我敲的代码,主要是前端开发 &lt;/span&gt;
+                &lt;/Col&gt;
+                
+                &lt;Col className=&quot;menu-div&quot; xs=&#123;0&#125; sm=&#123;0&#125; md=&#123;14&#125; lg=&#123;8&#125; xl=&#123;6&#125;&gt;
+                &lt;Menu mode=&quot;horizontal&quot;&gt;
+                  &lt;Menu.Item key=&quot;home&quot;&gt;
+                  &lt;HomeOutlined /&gt;
+                    首页
+                  &lt;/Menu.Item&gt;
+                  &lt;Menu.Item key=&quot;react&quot;&gt;
+                  &lt;SmileOutlined /&gt;
+                    React
+                  &lt;/Menu.Item&gt;
+                  &lt;Menu.Item key=&quot;other&quot;&gt;
+                  &lt;SmileOutlined /&gt;
+                    博客搭建
+                  &lt;/Menu.Item&gt;
+                &lt;/Menu&gt;
+                &lt;/Col&gt;
+            &lt;/Row&gt;
+          &lt;/div&gt;
+        )
+        
+        export default Header
+</code></pre>
+<p>-然后建立/style/components/header.css,用来编写CSS文件</p>
+<pre><code>         .header&#123;
+            background-color: #fff;
+            padding: .4rem;
+            overflow: hidden;
+            height: 3.2rem;
+            border-bottom:1px solid #eee;
+        &#125;
+        .header-logo&#123;
+            color:#1e90ff;
+            font-size: 1.45rem;
+            text-align: left;
+        &#125;
+        .header-txt&#123;
+            font-size: 0.6rem;
+            color: #999;
+            display: inline-block;
+            padding-left: 0.4rem;
+        &#125;
+        .ant-meu&#123;
+            line-height: 2.8rem;
+        &#125;
+        .ant-menu-item&#123;
+            font-size:1rem !important;
+            padding-left:1rem;
+            padding-right:1rem;
+            color: #999;
+        &#125;
+</code></pre>
+<p>-把Header.js文件引入到首页</p>
+<pre><code>         import Header from &#39;../components/Header&#39;
+</code></pre>
+<h2 id="3-首页和其他页面的主体两栏布局"><a href="#3-首页和其他页面的主体两栏布局" class="headerlink" title="3. 首页和其他页面的主体两栏布局"></a>3. 首页和其他页面的主体两栏布局</h2><p>1.首页(index.js)</p>
+<pre><code>    import React from &#39;react&#39;
+    import Head from &#39;next/head&#39;
+    import &#123;Row, Col&#125; from &#39;antd&#39;
+    import Header from &#39;../components/Header&#39;
+    const Home = () =&gt; (
+      &lt;&gt;
+        &lt;Head&gt;
+          &lt;title&gt;首页_慧慧慧&lt;/title&gt;
+        &lt;/Head&gt;
+        &lt;Header /&gt;
+        &lt;Row className=&quot;comm-main&quot; type=&quot;flex&quot; justify=&quot;center&quot;&gt;
+          &lt;Col className=&quot;comm-left&quot; xs=&#123;24&#125; sm=&#123;24&#125; md=&#123;16&#125; lg=&#123;18&#125; xl=&#123;14&#125;  &gt;
+            左侧
+          &lt;/Col&gt;
+    
+          &lt;Col className=&quot;comm-right&quot; xs=&#123;0&#125; sm=&#123;0&#125; md=&#123;7&#125; lg=&#123;5&#125; xl=&#123;4&#125;&gt;
+            右侧
+          &lt;/Col&gt;
+        &lt;/Row&gt;
+    
+     &lt;/&gt;
+    )
+    
+    export default Home
+</code></pre>
+<p>2.CSS样式写在公用的comm.css里</p>
+<pre><code>    body&#123;
+      background-color: #f6f6f6;  
+    &#125;
+    
+    .comm-left&#123;
+      background-color: #FFF;
+      padding:.3rem;
+      border-radius: .3rem;
+      border-bottom:1px solid #eee;
+    &#125;
+    .comm-box&#123;
+      background-color: #FFF;
+      margin-left: .5rem;
+      padding:.3rem;
+      border-radius: .3rem;
+      border-bottom:1px solid #eee;
+    
+    &#125;
+    .comm-main&#123;
+      margin-top: .5rem;
+    &#125;
+</code></pre>
+<p>3.其他页面<br>-Pages目录新建list.js和detailed.js文件，然后把index.js代码复制到里边，并进行简单的修改<br>-list.js</p>
+<pre><code>        import React from &#39;react&#39;
+        import Head from &#39;next/head&#39;
+        import &#123;Row, Col&#125; from &#39;antd&#39;
+        import Header from &#39;../components/Header&#39;
+        const List = () =&gt; (
+          &lt;&gt;
+            &lt;Head&gt;
+              &lt;title&gt;List_慧慧慧&lt;/title&gt;
+            &lt;/Head&gt;
+            &lt;Header /&gt;
+            &lt;Row className=&quot;comm-main&quot; type=&quot;flex&quot; justify=&quot;center&quot;&gt;
+              &lt;Col className=&quot;comm-left&quot; xs=&#123;24&#125; sm=&#123;24&#125; md=&#123;16&#125; lg=&#123;18&#125; xl=&#123;14&#125;  &gt;
+                左侧
+              &lt;/Col&gt;
+        
+              &lt;Col className=&quot;comm-right&quot; xs=&#123;0&#125; sm=&#123;0&#125; md=&#123;7&#125; lg=&#123;5&#125; xl=&#123;4&#125;&gt;
+                右侧
+              &lt;/Col&gt;
+            &lt;/Row&gt;
+        
+         &lt;/&gt;
+        )
+        
+        export default List
+</code></pre>
+<p>-detailed.js</p>
+<pre><code>        import React from &#39;react&#39;
+        import Head from &#39;next/head&#39;
+        import &#123;Row, Col&#125; from &#39;antd&#39;
+        import Header from &#39;../components/Header&#39;
+        const Detailed = () =&gt; (
+          &lt;&gt;
+            &lt;Head&gt;
+              &lt;title&gt;Detailed&lt;/title&gt;
+            &lt;/Head&gt;
+            &lt;Header /&gt;
+            &lt;Row className=&quot;comm-main&quot; type=&quot;flex&quot; justify=&quot;center&quot;&gt;
+              &lt;Col className=&quot;comm-left&quot; xs=&#123;24&#125; sm=&#123;24&#125; md=&#123;16&#125; lg=&#123;18&#125; xl=&#123;14&#125;  &gt;
+                左侧
+              &lt;/Col&gt;
+        
+              &lt;Col className=&quot;comm-right&quot; xs=&#123;0&#125; sm=&#123;0&#125; md=&#123;7&#125; lg=&#123;5&#125; xl=&#123;4&#125;&gt;
+                右侧
+              &lt;/Col&gt;
+            &lt;/Row&gt;
+        
+         &lt;/&gt;
+        )
+        
+        export default Detailed
+        
+</code></pre>
+<h2 id="4-Author组件"><a href="#4-Author组件" class="headerlink" title="4. Author组件"></a>4. Author组件</h2><p>1.在/components文件夹下面，新建一个Author.js文件</p>
+<pre><code>    import &#123;Avatar,Divider&#125; from &#39;antd&#39;
+    import &#123; WechatOutlined,QqOutlined, GithubOutlined&#125; from &#39;@ant-design/icons&#39;;
+    import &#39;../styles/components/author.css&#39;
+    
+    const Author =()=&gt;&#123;
+    
+        return (
+            &lt;div className=&quot;author-div comm-box&quot;&gt;
+                &lt;div&gt; &lt;Avatar size=&#123;100&#125; src= &quot;skill1.png&quot;  /&gt;&lt;/div&gt;
+                &lt;div className=&quot;author-introduction&quot;&gt;
+                   &lt;div&gt;Hey!我是慧慧慧&lt;/div&gt;
+                   &lt;div&gt;很惭愧,只做了一点微小的工作,谢谢大家~~&lt;/div&gt;
+                    &lt;Divider&gt;社交账号&lt;/Divider&gt;
+                    &lt;Avatar size=&#123;28&#125; icon=&#123;&lt;GithubOutlined /&gt;&#125;  className=&quot;account&quot;  /&gt;
+                    &lt;Avatar size=&#123;28&#125; icon=&#123;&lt;QqOutlined /&gt;&#125;   className=&quot;account&quot; /&gt;
+                    &lt;Avatar size=&#123;28&#125; icon=&#123;&lt;WechatOutlined /&gt;&#125;  className=&quot;account&quot;  /&gt;
+    
+                &lt;/div&gt;
+            &lt;/div&gt;
+        )
+    
+    &#125;
+    
+    export default Author
+    
+</code></pre>
+<p>2.styles/components/author.css</p>
+<pre><code>    .author-div&#123;
+        text-align: center;
+        padding: 1rem;
+    
+    &#125;
+    .author-div div&#123;
+        margin-bottom: 1rem;
+    
+    &#125;
+    .author-introduction&#123;
+        font-size:.8rem;
+        color: #999;
+    &#125;
+    .account&#123;
+        background-color: #999;
+        margin-left: .5rem;
+        margin-right: .5rem;
+        &#125;
+        
+</code></pre>
+<p>3.把Author.js文件引入到首页</p>
+<pre><code>    import Author from &#39;../components/Author&#39;
+    
+</code></pre>
+<h2 id="5-底部组件-Footer-js"><a href="#5-底部组件-Footer-js" class="headerlink" title="5. 底部组件(Footer.js)"></a>5. 底部组件(Footer.js)</h2><p>1.在/components目录下，新建立一个Footer.js的文件</p>
+<pre><code>    import &#39;../styles/components/footer.css&#39;
+    
+    const Footer=()=&gt;(
+      &lt;div className=&quot;footer-div&quot;&gt;
+        &lt;div&gt;系统由 React+Node+Ant Desgin驱动 &lt;/div&gt;
+            &lt;div&gt;慧慧慧&lt;/div&gt;
+      &lt;/div&gt;
+    )
+    
+    export default Footer
+    
+</code></pre>
+<p>2.styles/components/footer.css</p>
+<pre><code>    .footer-div&#123;
+      text-align: center;
+      width: 100%;
+      padding: 1rem;
+      color:#888;
+    &#125;
+</code></pre>
+<p>3.把Footer.js文件引入首页</p>
+<pre><code>    import Footer from &#39;../components/Footer&#39;
+</code></pre>
+<h2 id="6-首页列表部分和列表页面-List-js"><a href="#6-首页列表部分和列表页面-List-js" class="headerlink" title="6. 首页列表部分和列表页面(List.js)"></a>6. 首页列表部分和列表页面(List.js)</h2><p>1.index.js引入Ant Design的List组件和图标</p>
+<pre><code>    import &#123;Row,Col,List&#125; from &#39;antd&#39;
+    import &#123;CalendarOutlined,FolderOutlined,FireOutlined&#125; from &#39;@ant-design/icons&#39;
+</code></pre>
+<p>2.引入useState</p>
+<pre><code>    import React,&#123;useState&#125; from &#39;react&#39;
+    
+</code></pre>
+<p>3.用useState在index.js中写列表内容</p>
+<pre><code>    const [mylist,setMylist]=useState(
+        [ 
+        &#123;title:&#39;React Hooks 网站开发实战&#39;,context:&#39;1. 项目前端开发环境搭建 2. 公用背景和头部组件 3. 首页和其他页面的主体两栏布局 4. Author组件 5. 底部组件(Footer.js) 6. 首页列表部分和列表页面(List.js) ...&#39;&#125;,
+        &#123;title:&#39;从零开始搭建个人Hexo博客&#39;,context:&#39;1. 环境准备 2. 安装hexo博客框架 3. 使用hexo搭建博客 4. 把博客部署到github 5. 自定义博客主题 ...&#39;&#125;,
+        &#123;title:&#39;React Hooks 网站开发实战&#39;,context:&#39;1. 项目前端开发环境搭建 2. 公用背景和头部组件 3. 首页和其他页面的主体两栏布局 4. Author组件 5. 底部组件(Footer.js) 6. 首页列表部分和列表页面(List.js) ...&#39;&#125;,
+        &#123;title:&#39;从零开始搭建个人Hexo博客&#39;,context:&#39;1. 环境准备 2. 安装hexo博客框架 3. 使用hexo搭建博客 4. 把博客部署到github 5. 自定义博客主题 ...&#39;&#125;,
+        &#123;title:&#39;React Hooks 网站开发实战&#39;,context:&#39;1. 项目前端开发环境搭建 2. 公用背景和头部组件 3. 首页和其他页面的主体两栏布局 4. Author组件 5. 底部组件(Footer.js) 6. 首页列表部分和列表页面(List.js) ...&#39;&#125;,
+        &#123;title:&#39;从零开始搭建个人Hexo博客&#39;,context:&#39;1. 环境准备 2. 安装hexo博客框架 3. 使用hexo搭建博客 4. 把博客部署到github 5. 自定义博客主题 ...&#39;&#125;,
+       ]
+      )
+      
+</code></pre>
+<p>4.在/style/pages文件夹下，新建index.css文件</p>
+<pre><code>    .list-title&#123;
+        font-size:1.3rem;
+        color: #1e90ff;
+        padding: 0 0.5rem;
+    &#125;
+    .list-context&#123;
+        color:#777;
+        padding:.5rem;
+    &#125;
+    .list-icon&#123;
+        padding:.5rem 0;
+        color:#AAA;
+    &#125;
+    .list-icon span&#123;
+        display: inline-block;
+        padding: 0 10px;
+    &#125;
+</code></pre>
+<p>5.index.js中引入index.css</p>
+<pre><code>    import &#39;../style/pages/index.css&#39;
+</code></pre>
+<p>6.在/style/pages文件夹下，新建list.css文件,拷贝index.css到list.css里<br>-list.css</p>
+<pre><code>        .list-title&#123;
+          font-size:1.3rem;
+          color: #1e90ff;
+          padding: 0 0.5rem;
+        &#125;
+        .list-context&#123;
+          color:#777;
+          padding:.5rem;
+        &#125;
+        .list-icon&#123;
+          padding:.5rem 0;
+          color:#AAA;
+        &#125;
+        .list-icon span&#123;
+          display: inline-block;
+          padding: 0 10px;
+        &#125;
+</code></pre>
+<p>7.把首页的代码index.js，拷贝到list.js页面中，然后把index.css的引入改成list.css。</p>
+<pre><code>    import &#39;../styles/pages/list.css&#39;
+</code></pre>
+<p>8.用Ant Design自带的Breadcrumb写面包屑导航了<br>-先引入</p>
+<pre><code>        import &#123;Row,Col,List,Breadcrumb&#125; from &#39;antd&#39;
+</code></pre>
+<p>-面包屑导航</p>
+<pre><code>          &lt;div className=&quot;bread-div&quot;&gt;
+              &lt;Breadcrumb&gt;
+                 &lt;Breadcrumb.Item&gt;&lt;a href=&quot;/&quot;&gt;首页&lt;/a&gt;&lt;/Breadcrumb.Item&gt;
+                 &lt;Breadcrumb.Item&gt;React&lt;/Breadcrumb.Item&gt;
+              &lt;/Breadcrumb&gt;
+          &lt;/div&gt;
+</code></pre>
+<p>9.修改一下的内容以符合列表页面<br>-list.js</p>
+<pre><code>        import React,&#123;useState&#125; from &#39;react&#39;
+        import Head from &#39;next/head&#39;
+        import &#123;Row,Col,List,Breadcrumb&#125; from &#39;antd&#39;
+        import &#123;CalendarOutlined,FolderOutlined,FireOutlined&#125; from &#39;@ant-design/icons&#39;
+        import Header from &#39;../components/Header&#39;
+        import Author from &#39;../components/Author&#39;
+        import Footer from &#39;../components/Footer&#39;
+        import &#39;../styles/pages/list.css&#39;
+        
+        export default function Mylist() &#123;
+          const [mylist,setMylist]=useState(
+            [ 
+            &#123;title:&#39;React Hooks 网站开发实战&#39;,context:&#39;1. 项目前端开发环境搭建 2. 公用背景和头部组件 3. 首页和其他页面的主体两栏布局 4. Author组件 5. 底部组件(Footer.js) 6. 首页列表部分和列表页面(List.js) ...&#39;&#125;,
+            &#123;title:&#39;从零开始搭建个人Hexo博客&#39;,context:&#39;1. 环境准备 2. 安装hexo博客框架 3. 使用hexo搭建博客 4. 把博客部署到github 5. 自定义博客主题 ...&#39;&#125;,
+            &#123;title:&#39;React Hooks 网站开发实战&#39;,context:&#39;1. 项目前端开发环境搭建 2. 公用背景和头部组件 3. 首页和其他页面的主体两栏布局 4. Author组件 5. 底部组件(Footer.js) 6. 首页列表部分和列表页面(List.js) ...&#39;&#125;,
+            &#123;title:&#39;从零开始搭建个人Hexo博客&#39;,context:&#39;1. 环境准备 2. 安装hexo博客框架 3. 使用hexo搭建博客 4. 把博客部署到github 5. 自定义博客主题 ...&#39;&#125;,
+            &#123;title:&#39;React Hooks 网站开发实战&#39;,context:&#39;1. 项目前端开发环境搭建 2. 公用背景和头部组件 3. 首页和其他页面的主体两栏布局 4. Author组件 5. 底部组件(Footer.js) 6. 首页列表部分和列表页面(List.js) ...&#39;&#125;,
+            &#123;title:&#39;从零开始搭建个人Hexo博客&#39;,context:&#39;1. 环境准备 2. 安装hexo博客框架 3. 使用hexo搭建博客 4. 把博客部署到github 5. 自定义博客主题 ...&#39;&#125;,
+           ]
+          )
+          return (
+            &lt;div&gt;
+              &lt;Head&gt;
+                &lt;title&gt;List_慧慧慧&lt;/title&gt;
+              &lt;/Head&gt;
+              &lt;Header /&gt;
+              &lt;Row className=&quot;comm-main&quot; type=&quot;flex&quot; justify=&quot;center&quot;&gt;
+                &lt;Col className=&quot;comm-left&quot; xs=&#123;24&#125; sm=&#123;24&#125; md=&#123;16&#125; lg=&#123;18&#125; xl=&#123;14&#125;&gt;
+               
+                &lt;div&gt;
+                      &lt;div className=&quot;bread-div&quot;&gt;
+                        &lt;Breadcrumb&gt;
+                          &lt;Breadcrumb.Item&gt;&lt;a href=&quot;/&quot;&gt;首页&lt;/a&gt;&lt;/Breadcrumb.Item&gt;
+                          &lt;Breadcrumb.Item&gt;React&lt;/Breadcrumb.Item&gt;
+                        &lt;/Breadcrumb&gt;
+                      &lt;/div&gt;
+                  
+                  &lt;List 
+                  itemLayout=&quot;vertical&quot;
+                  dataSource=&#123;mylist&#125;
+                  renderItem=&#123;item=&gt;(
+                    &lt;List.Item&gt;
+                      &lt;div className=&quot;list-title&quot;&gt;&#123;item.title&#125;&lt;/div&gt;
+                      &lt;div className=&quot;list-icon&quot;&gt;
+                        &lt;span&gt;&lt;CalendarOutlined /&gt;2021-02-21&lt;/span&gt;
+                        &lt;span&gt;&lt;FolderOutlined /&gt;React&lt;/span&gt;
+                        &lt;span&gt;&lt;FireOutlined /&gt;6666&lt;/span&gt;
+                      &lt;/div&gt;
+                  &lt;div className=&quot;list-context&quot;&gt;&#123;item.context&#125;&lt;/div&gt;
+                    &lt;/List.Item&gt;
+                  )&#125;
+                  /&gt;
+                  &lt;/div&gt;
+                &lt;/Col&gt;
+        
+                &lt;Col className=&quot;comm-right&quot; xs=&#123;0&#125; sm=&#123;0&#125; md=&#123;7&#125; lg=&#123;5&#125; xl=&#123;4&#125;&gt;
+                   &lt;Author /&gt;
+                   
+                &lt;/Col&gt;
+              &lt;/Row&gt;
+        
+              &lt;Footer /&gt;
+            &lt;/div&gt;
+          )
+        &#125;
+</code></pre>
+<h2 id="7-详细页面-detailed-js-的基本页面结构"><a href="#7-详细页面-detailed-js-的基本页面结构" class="headerlink" title="7. 详细页面(detailed.js)的基本页面结构"></a>7. 详细页面(detailed.js)的基本页面结构</h2><p>1.在/style/pages文件夹下建立detailed.css文件</p>
+<pre><code>         .bread-div&#123;
+            padding: .5rem;
+            border-bottom:1px solid #eee;
+            background-color: #e1f0ff;
+        &#125;
+        .detailed-title&#123;
+            font-size: 1.8rem;
+            text-align: center;
+            padding: 1rem;
+        &#125;
+        .center&#123;
+            text-align: center;
+        &#125;
+        .detailed-content&#123;
+            padding: 1.3rem;
+            font-size: 1rem;
+        &#125;
+        code &#123;
+            display: block ;
+             background-color:#f3f3f3;
+             padding: .5rem !important;
+             overflow-y: auto;
+             font-weight: 300;
+             font-family: Menlo, monospace;
+             border-radius: .3rem;
+        &#125;
+        
+        .title-anchor&#123;
+            color:#888 !important;
+            padding:4px !important;
+            margin: 0rem !important;
+            height: auto !important;
+            line-height: 1.2rem !important;
+            font-size: .9rem !important;
+            border-bottom: 1px dashed #eee;
+        &#125;
+        .active&#123;
+            color:rgb(30, 144, 255) !important;
+        &#125;
+        .nav-title&#123;
+            text-align: center;
+            color: #888;
+            border-bottom: 1px solid rgb(30, 144, 255);
+        
+        &#125;
+        
+</code></pre>
+<p>2.打开detailed.js，引入detailed.css和其他组件</p>
+<pre><code>        import React,&#123;useState&#125; from &#39;react&#39;
+        import Head from &#39;next/head&#39;
+        import &#123;Row,Col,Breadcrumb&#125; from &#39;antd&#39;
+        import &#123;CalendarOutlined,FolderOutlined,FireOutlined&#125; from &#39;@ant-design/icons&#39;
+        
+        import Header from &#39;../components/Header&#39;
+        import Author from &#39;../components/Author&#39;
+        import Footer from &#39;../components/Footer&#39;
+        import &#39;../styles/pages/detailed.css&#39;
+</code></pre>
+<p>3.修改一下内容以符合该页面</p>
+<pre><code>         export default function Detailed() &#123;
+        
+          return (
+            &lt;div&gt;
+              &lt;Head&gt;
+                &lt;title&gt;React Hooks 网站开发实战_慧慧慧&lt;/title&gt;
+              &lt;/Head&gt; 
+              &lt;Header /&gt;
+              &lt;Row className=&quot;comm-main&quot; type=&quot;flex&quot; justify=&quot;center&quot;&gt;
+                &lt;Col className=&quot;comm-left&quot; xs=&#123;24&#125; sm=&#123;24&#125; md=&#123;16&#125; lg=&#123;18&#125; xl=&#123;14&#125;&gt;
+                &lt;div&gt;
+                      &lt;div className=&quot;bread-div&quot;&gt;
+                        &lt;Breadcrumb&gt;
+                          &lt;Breadcrumb.Item&gt;&lt;a href=&quot;/&quot;&gt;首页&lt;/a&gt;&lt;/Breadcrumb.Item&gt;
+                          &lt;Breadcrumb.Item&gt;React&lt;/Breadcrumb.Item&gt;
+                          &lt;Breadcrumb.Item&gt;React Hooks 网站开发实战&lt;/Breadcrumb.Item&gt;
+                        &lt;/Breadcrumb&gt;
+                      &lt;/div&gt;
+                      &lt;div&gt;
+                        &lt;div className=&quot;detailed-title&quot;&gt;
+                        React Hooks 网站开发实战
+                        &lt;/div&gt;
+        
+                        &lt;div className=&quot;list-icon center&quot;&gt;
+                        &lt;span&gt;&lt;CalendarOutlined /&gt;2021-02-21&lt;/span&gt;
+                        &lt;span&gt;&lt;FolderOutlined /&gt;React&lt;/span&gt;
+                        &lt;span&gt;&lt;FireOutlined /&gt;5498&lt;/span&gt;
+                        &lt;/div&gt;
+        
+                        &lt;div className=&quot;detailed-content&quot; &gt;
+                        文章内容
+                        &lt;/div&gt;
+        
+                     &lt;/div&gt;
+        
+                    &lt;/div&gt;
+        
+                &lt;/Col&gt;
+        
+                &lt;Col className=&quot;comm-right&quot; xs=&#123;0&#125; sm=&#123;0&#125; md=&#123;7&#125; lg=&#123;5&#125; xl=&#123;4&#125;&gt;
+                  &lt;Author/&gt;
+                 
+                &lt;/Col&gt;
+              &lt;/Row&gt;
+              &lt;Footer/&gt;
+            &lt;/div&gt;
+          )
+        &#125;
+</code></pre>
+<h2 id="8-详细页面-detailed-js-解析Markdown语法"><a href="#8-详细页面-detailed-js-解析Markdown语法" class="headerlink" title="8. 详细页面(detailed.js)解析Markdown语法"></a>8. 详细页面(detailed.js)解析Markdown语法</h2><p>1.安装react-markdown:<code>yarn add react-markdown</code><br>2.detailed.js中引入:<code>import ReactMarkdown from &#39;react-markdown&#39;</code><br>3.设置react-markdown source 属性从 .md 文件中获取内容:</p>
+<p> -设置 webpack 支持.md 文件,先安装加载器raw-loader : </p>
+<p> <code>npm install -D raw-loader</code> <code>yarn add -D raw-loader</code></p>
+<p> -blog目录下新建文件夹 md ,将写好的Markdown文件放入,在detailed.js里面,内联使用加载器</p>
+<pre><code>         import ReacthooksMd from &#39;raw-loader!../md/reacthooks.md&#39;
+</code></pre>
+<p>4.使用react-markdown渲染markdown文件</p>
+<pre><code>        &lt;div className=&quot;detailed-content&quot; &gt;
+             &lt;ReactMarkdown
+              source=&#123;ReacthooksMd&#125;
+              escapeHtml=&#123;false&#125;
+              /&gt;
+        &lt;/div&gt;
+</code></pre>
+<h2 id="9-详细页面-detailed-js-的Markdown导航"><a href="#9-详细页面-detailed-js-的Markdown导航" class="headerlink" title="9. 详细页面(detailed.js)的Markdown导航"></a>9. 详细页面(detailed.js)的Markdown导航</h2><p>1.markdown-navbar的安装与使用: <code>yarn add markdown-navbar</code><br>2.detailed.js中引入markdown-navbar及其css</p>
+<pre><code>    import MarkNav from &#39;markdown-navbar&#39;
+    import &#39;markdown-navbar/dist/navbar.css&#39;
+</code></pre>
+<p>3.Markdown导航</p>
+<pre><code>    &lt;div className=&quot;detailed-nav comm-box&quot;&gt;
+       &lt;div className=&quot;nav-title&quot;&gt;文章目录&lt;/div&gt;
+       &lt;MarkNav
+        className=&quot;article-menu&quot;
+        source=&#123;ReacthooksMd&#125;
+        ordered=&#123;false&#125;
+        /&gt;
+    &lt;/div&gt;
+    
+</code></pre>
+<p>4.让导航一直在页面右侧的固钉<br> -引入Affix</p>
+<pre><code>        import &#123;Row,Col,Affix,Breadcrumb&#125; from &#39;antd&#39;
+</code></pre>
+<p> -在需要固钉的外层加上Affix组件</p>
+<pre><code>        &lt;Affix offsetTop=&#123;5&#125;&gt;
+           &lt;div className=&quot;detailed-nav comm-box&quot;&gt;
+              &lt;div className=&quot;nav-title&quot;&gt;文章目录&lt;/div&gt;
+              &lt;MarkNav
+                className=&quot;article-menu&quot;
+                source=&#123;ReacthooksMd&#125;
+                ordered=&#123;false&#125;
+              /&gt;
+            &lt;/div&gt;
+        &lt;/Affix&gt;
+</code></pre>
+<h2 id="10-实现各页面之间路由跳转"><a href="#10-实现各页面之间路由跳转" class="headerlink" title="10. 实现各页面之间路由跳转"></a>10. 实现各页面之间路由跳转</h2><p>1.在需要实现跳转的页面或者组件中引入<code>import Router from &#39;next/router&#39;</code>或者<code>import Link from &#39;next/link&#39;</code><br>2.在需要跳转的位置写入<code>onClick=&#123;()=&gt;&#123;Router.push(&#39;/&#39;)&#125;&#125;</code>或者<code>&lt; Link href=&quot;/&quot;&gt;&lt;a&gt;首页&lt;/a&gt;</code></p>
+<p> 如:</p>
+<pre><code>     import Link from &#39;next/link&#39;
+     
+     
+     &lt;div className=&quot;bread-div&quot;&gt;
+            &lt;Breadcrumb&gt;
+              &lt;Breadcrumb.Item&gt;&lt; Link href=&quot;/&quot;&gt;&lt;a&gt;首页&lt;/a&gt;&lt;/ Link&gt;&lt;/Breadcrumb.Item&gt;
+              &lt;Breadcrumb.Item&gt;&lt; Link href=&quot;/list&quot;&gt;&lt;a&gt;React&lt;/a&gt;&lt;/ Link&gt;&lt;/Breadcrumb.Item&gt;
+              &lt;Breadcrumb.Item&gt;React Hooks 网站开发实战&lt;/Breadcrumb.Item&gt;
+            &lt;/Breadcrumb&gt;
+          &lt;/div&gt;
+        
+</code></pre>
+<p> 如:</p>
+<pre><code>    import Router from &#39;next/router&#39;
+    
+    
+    &lt;Col className=&quot;menu-div&quot; xs=&#123;0&#125; sm=&#123;0&#125; md=&#123;14&#125; lg=&#123;8&#125; xl=&#123;6&#125;&gt;
+    &lt;Menu mode=&quot;horizontal&quot;&gt;
+      &lt;Menu.Item key=&quot;home&quot; onClick=&#123;()=&gt;&#123;Router.push(&#39;/&#39;)&#125;&#125;&gt;
+      &lt;HomeOutlined /&gt;
+        首页
+      &lt;/Menu.Item&gt;
+      &lt;Menu.Item key=&quot;react&quot;onClick=&#123;()=&gt;&#123;Router.push(&#39;list&#39;)&#125;&#125;&gt;
+      &lt;SmileOutlined /&gt;
+        React
+      &lt;/Menu.Item&gt;
+      &lt;Menu.Item key=&quot;other&quot; onClick=&#123;()=&gt;&#123;Router.push(&#39;list&#39;)&#125;&#125;&gt;
+      &lt;SmileOutlined /&gt;
+        博客搭建
+      &lt;/Menu.Item&gt;
+    &lt;/Menu&gt;
+    &lt;/Col&gt;
+</code></pre>
+<h2 id="11-未完待续…"><a href="#11-未完待续…" class="headerlink" title="11. 未完待续…"></a>11. 未完待续…</h2><p> 至此,网站前端部分就已经基本完成了,有时间再来续后端部分~~</p>
+<p> 来一个暂时告一段落的完结撒花吧~~~~~~~~</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">React</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/02/27/React-Hooks%E7%BD%91%E7%AB%99%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Gitee部署" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/02/26/Gitee%E9%83%A8%E7%BD%B2/">Gitee部署</a>
+    </h1>
+  
+
+        
+        <a href="/2021/02/26/Gitee%E9%83%A8%E7%BD%B2/" class="archive-article-date">
+  	<time datetime="2021-02-26T13:43:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="生成-添加SSH公钥"><a href="#生成-添加SSH公钥" class="headerlink" title="生成/添加SSH公钥"></a>生成/添加SSH公钥</h2><p>Gitee 提供了基于SSH协议的Git服务，在使用SSH协议访问仓库仓库之前，需要先配置好账户/仓库的SSH公钥。</p>
+<ol>
+<li>生成sshkey:<code>ssh-keygen -t rsa -C &quot;xxxxx@xxxxx.com&quot;</code></li>
+<li>查看 ~/.ssh/id_rsa.pub 文件内容，获取到public key:<code>cat ~/.ssh/id_rsa.pub</code></li>
+<li>复制生成后的ssh key,在「我的」-&gt;「设置」-&gt;「安全设置」-&gt;「ssh公钥」里粘贴,标题在粘贴后会自动生成邮箱地址.</li>
+<li>测试:<code>ssh -T git@gitee.com</code></li>
+</ol>
+<ul>
+<li>首次使用需要确认并添加主机到本机SSH可信列表。</li>
+<li>若返回 Hi XXX! You’ve successfully authenticated, but Gitee.com does not provide shell access. 内容，则证明添加成功。</li>
+</ul>
+<ol start="5">
+<li>Gitee官方说明:<a target="_blank" rel="noopener" href="https://gitee.com/help/articles/4181#article-header0">https://gitee.com/help/articles/4181#article-header0</a></li>
+</ol>
+<h2 id="新建gitee远程仓库"><a href="#新建gitee远程仓库" class="headerlink" title="新建gitee远程仓库"></a>新建gitee远程仓库</h2><ol>
+<li>填写仓库名称,会自动生成路径,然后填写仓库介绍(非必填).</li>
+<li>选择是否开源.</li>
+<li>选择语言.</li>
+<li>选择添加.gitignore模板.(.gitignore文件用于在提交项目文件时过滤一些不需要的文件。比如我们项目中的npm包(node_modules)，它在我们项目中是很重要的，但是它占的内存也是很大的，所以一般我们用Git管理的时候就考虑不添加npm包的。)</li>
+</ol>
+<h2 id="在当前目录新建一个Git代码库"><a href="#在当前目录新建一个Git代码库" class="headerlink" title="在当前目录新建一个Git代码库"></a>在当前目录新建一个Git代码库</h2><p>   <code>git init</code> (会新建一个隐藏文件git到当前目录)</p>
+<h2 id="添加当前目录的所有文件到暂存区"><a href="#添加当前目录的所有文件到暂存区" class="headerlink" title="添加当前目录的所有文件到暂存区"></a>添加当前目录的所有文件到暂存区</h2><ol>
+<li><code>git add .</code></li>
+<li>查看信息,显示有变更的文件:<code>git status</code></li>
+</ol>
+<h2 id="提交暂存区到仓库区"><a href="#提交暂存区到仓库区" class="headerlink" title="提交暂存区到仓库区"></a>提交暂存区到仓库区</h2><p>   <code>git commit -m &quot;message&quot;</code></p>
+<h2 id="本地库关联远程库"><a href="#本地库关联远程库" class="headerlink" title="本地库关联远程库"></a>本地库关联远程库</h2><p><code>git remote add origin 复制gitee仓库ssh到此处</code></p>
+<h2 id="上传本地指定分支到远程仓库"><a href="#上传本地指定分支到远程仓库" class="headerlink" title="上传本地指定分支到远程仓库"></a>上传本地指定分支到远程仓库</h2><ol>
+<li>建立远程分支 main 并将远程 main 分支和本地 main 分支相关联:<code>git push --set-upstream origin main</code> (一般新建的分支在push的时候都需要执行这个命令和远端相关联)</li>
+<li>再执行 <code>git push</code></li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Git</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/02/26/Gitee%E9%83%A8%E7%BD%B2/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-从零开始搭建个人博客" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -172,45 +984,45 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2><ol>
+        <h2 id="1-环境准备"><a href="#1-环境准备" class="headerlink" title="1. 环境准备"></a>1. 环境准备</h2><ol>
 <li>node.js</li>
 <li>git</li>
 </ol>
-<h2 id="安装hexo博客框架"><a href="#安装hexo博客框架" class="headerlink" title="安装hexo博客框架"></a>安装hexo博客框架</h2><ol>
-<li>安装命令行: cnpm install -g hexo-cli</li>
-<li>查看版本: hexo -v</li>
+<h2 id="2-安装hexo博客框架"><a href="#2-安装hexo博客框架" class="headerlink" title="2. 安装hexo博客框架"></a>2. 安装hexo博客框架</h2><ol>
+<li>安装命令行: <code>cnpm install -g hexo-cli</code></li>
+<li>查看版本: <code>hexo -v</code></li>
 </ol>
-<h2 id="使用hexo搭建博客"><a href="#使用hexo搭建博客" class="headerlink" title="使用hexo搭建博客"></a>使用hexo搭建博客</h2><ol>
-<li>建立项目文件夹: mkdir 文件夹名字(如:mkdir blog)</li>
-<li>进入项目文件夹: cd 文件夹名字(如:cd blog)</li>
-<li>使用hexo生成博客(初始化博客): sudo hexo init (sudo表示用管理员命令来执行)</li>
-<li>启动博客: hexo s ( localhost:4000 查看)</li>
-<li>创建文章: hexo n “你的文章标题”</li>
+<h2 id="3-使用hexo搭建博客"><a href="#3-使用hexo搭建博客" class="headerlink" title="3. 使用hexo搭建博客"></a>3. 使用hexo搭建博客</h2><ol>
+<li>建立项目文件夹: <code>mkdir 文件夹名字(如:mkdir blog)</code></li>
+<li>进入项目文件夹: <code>cd 文件夹名字(如:cd blog)</code></li>
+<li>使用hexo生成博客(初始化博客): <code>sudo hexo init (sudo表示用管理员命令来执行)</code></li>
+<li>启动博客: <code>hexo s</code>  ( localhost:4000 查看)</li>
+<li>创建文章: <code>hexo n &quot;你的文章标题&quot;</code></li>
 <li>编辑文章: 使用vim、Markdown编辑器或者VSCode编辑</li>
-<li>重新生成文章: 回到项目文件夹目录下,先清理 hexo clean,再重生成 hexo g</li>
+<li>重新生成文章: 回到项目文件夹目录下,先清理 <code>hexo clean</code>,再重生成 <code>hexo g</code></li>
 </ol>
-<h2 id="把博客部署到github"><a href="#把博客部署到github" class="headerlink" title="把博客部署到github"></a>把博客部署到github</h2><ol>
+<h2 id="4-把博客部署到github"><a href="#4-把博客部署到github" class="headerlink" title="4. 把博客部署到github"></a>4. 把博客部署到github</h2><ol>
 <li>github注册(注意:注册的账户名在下一步要用在仓库名字上,而仓库名字是你的博客网址,好好起名字哦~)</li>
 <li>新建一个github仓库(Create a new repository)<ul>
 <li>仓库名字(Repository name):命名格式必须是” github账户名.github.io “</li>
 <li>描述是可选项</li>
 </ul>
 </li>
-<li>在项目文件夹下安装git部署的插件: cnpm install –save hexo-deployer-git</li>
+<li>在项目文件夹下安装git部署的插件: <code>cnpm install --save hexo-deployer-git</code></li>
 <li>设置_config.yml文件.在项目文件夹目录下找到_config.yml文件,使用vscode等编辑器打开.按照如下配置Deployment: <ul>
 <li>type: git</li>
 <li>repo: 你的github仓库地址</li>
 <li>branch: master</li>
 </ul>
 </li>
-<li>部署到远端: hexo d(中途会要求输入github账号密码)</li>
+<li>部署到远端: <code>hexo d</code>(中途会要求输入github账号密码)</li>
 <li>访问博客:你的仓库名字就是博客网址</li>
 </ol>
-<h2 id="自定义博客主题"><a href="#自定义博客主题" class="headerlink" title="自定义博客主题"></a>自定义博客主题</h2><ol>
+<h2 id="5-自定义博客主题"><a href="#5-自定义博客主题" class="headerlink" title="5. 自定义博客主题"></a>5. 自定义博客主题</h2><ol>
 <li>找到喜欢的主题</li>
-<li>下载主题: git clone 主题网址 themes/主题名字</li>
-<li>修改主题: _config.yml文件里找到theme,修改成 theme: 主题名</li>
-<li>推到远端: hexo d</li>
+<li>下载主题: <code>git clone 主题网址 themes/主题名字</code></li>
+<li>修改主题: _config.yml文件里找到theme,修改成 <code>theme: 主题名</code></li>
+<li>推到远端: <code>hexo d</code></li>
 </ol>
 
       
@@ -220,6 +1032,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">博客搭建</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -335,10 +1158,9 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2021 John Doe
+    		&copy; 2021 慧慧慧
     	</div>
       	<div class="footer-right">
-      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
       	</div>
     </div>
   </div>
@@ -355,8 +1177,8 @@
 		open_in_new: false,
 		toc_hide_index: true,
 		root: "/",
-		innerArchive: true,
-		showTags: false
+		innerArchive: false,
+		showTags: true
 	}
 </script>
 
@@ -371,8 +1193,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
   <div class="tools-nav header-menu">
     
     
-      
-      
       
     
       
@@ -389,75 +1209,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
+        
+      
+      <li style="width: 50%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">文章分类</a></li>
       
         
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友链</a></li>
-      
-        
-      
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
+      <li style="width: 50%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
       
         
     </ul>
   </div>
   <div class="tools-wrap">
-    
-    	<section class="tools-section tools-section-all" q-show="innerArchive">
-        <div class="search-wrap">
-          <input class="search-ipt" q-model="search" type="text" placeholder="find something…">
-          <i class="icon-search icon" q-show="search|isEmptyStr"></i>
-          <i class="icon-close icon" q-show="search|isNotEmptyStr" q-on="click:clearChose(e)"></i>
-        </div>
-        <div class="widget tagcloud search-tag">
-          <p class="search-tag-wording">tag:</p>
-          <label class="search-switch">
-            <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
-          </label>
-          <ul class="article-tag-list" q-show="showTags">
-            
-            <div class="clearfix"></div>
-          </ul>
-        </div>
-        <ul class="search-ul">
-          <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
-            3、在根目录_config.yml里添加配置：
-<pre style="font-size: 12px;" q-show="jsonFail">
-  jsonContent:
-    meta: false
-    pages: false
-    posts:
-      title: true
-      date: true
-      path: true
-      text: false
-      raw: false
-      content: false
-      slug: false
-      updated: false
-      comments: false
-      link: false
-      permalink: false
-      excerpt: false
-      categories: false
-      tags: true
-</pre>
-          </p>
-          <li class="search-li" q-repeat="items" q-show="isShow">
-            <a q-attr="href:path|urlformat" class="search-title"><i class="icon-quo-left icon"></i><span q-text="title"></span></a>
-            <p class="search-time">
-              <i class="icon-calendar icon"></i>
-              <span q-text="date|dateformat"></span>
-            </p>
-            <p class="search-tag">
-              <i class="icon-price-tags icon"></i>
-              <span q-repeat="tags" q-on="click:choseTag(e, name)" q-text="name|tagformat"></span>
-            </p>
-          </li>
-        </ul>
-    	</section>
     
 
     
@@ -466,27 +1229,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
         <ul class="search-ul">
           
             <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接1</a>
+              <a href="/tags/React/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>React</a>
             </li>
           
             <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接2</a>
+              <a href="/tags/Git/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>Git</a>
             </li>
           
             <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接3</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接4</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接5</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接6</a>
+              <a href="/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>博客搭建</a>
             </li>
           
         </ul>
