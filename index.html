@@ -341,6 +341,515 @@
 
 
   
+    <article id="post-学习React-Hook" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/02/26/%E5%AD%A6%E4%B9%A0React-Hook/">学习React Hook</a>
+    </h1>
+  
+
+        
+        <a href="/2021/02/26/%E5%AD%A6%E4%B9%A0React-Hook/" class="archive-article-date">
+  	<time datetime="2021-02-26T06:13:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="几个觉悟"><a href="#几个觉悟" class="headerlink" title="几个觉悟"></a>几个觉悟</h2><p>1.开发的时候不用再过多考虑生命周期了!<br>2.一个函数就是一个组件,各个组件构成页面</p>
+<pre><code>    function App()&#123;
+    return &lt;h1&gt;Hello&lt;/h1&gt;
+    &#125;
+</code></pre>
+<p>3.写代码是为了读的,React Hook就是把行为映射到页面上,让人更容易理解代码背后的业务逻辑.</p>
+<h2 id="比较常用的react语法"><a href="#比较常用的react语法" class="headerlink" title="比较常用的react语法"></a>比较常用的react语法</h2><p>1.箭头函数</p>
+<pre><code>    const App =()=&gt;&#123;
+    renturn &lt;h1&gt;Hello&lt;/h1&gt;
+    &#125;
+</code></pre>
+<p>2.react封装,属性的嵌套和传递</p>
+<pre><code>    const App =(&#123;color,onClick&#125;)=&gt;&#123;
+    return (
+      &lt;h1
+       onClick=&#123;onClick&#125;
+       style=&#123;&#123;
+		     color,
+		     marginLeft:'10px'
+		   &#125;&#125;
+      &gt;
+       Hello
+      &lt;h1&gt;
+     );
+    &#125;
+    
+    const handleClick=()=&gt;&#123;
+     console.log(&#39;clicked me&#39;)
+    &#125;
+    
+    ReactDOM.render(&lt;App color=&#39;red&#39; onClick=&#123;handleClick&#125;/&gt;,
+    document.getElementById(&quot;root&quot;))
+</code></pre>
+<p>3.组件套用前要定义、列表(map)要定义key</p>
+<pre><code>    const Header=()=&gt;&#123;
+     return &lt;header&gt;
+       DEMO
+     &lt;/header&gt;
+    &#125;
+    
+    const Content=()=&gt;&#123;
+     const Items=[&#39;A&#39;,&#39;B&#39;,&#39;C&#39;]
+     
+     renturn (
+     &lt;div className=&#39;content&#39;&gt;
+     &#123;items.map((x,i)=&gt;&#123;
+       return&lt;div key=&#123;i&#125;&gt;&#123;x&#125;&lt;/div&gt;
+     &#125;)&#125;
+     &lt;/div&gt; 
+     );
+    &#125;
+    
+    const Footer=()=&gt;&#123;
+      return &lt;footer&gt;footer&lt;/footer&gt;
+    &#125;
+    
+     const App =()=&gt;&#123;
+        return (
+            &lt;React.Fragment&gt;
+              &lt;Header /&gt;
+              &lt;Content /&gt;
+              &lt;Footer /&gt;
+             &lt;/React.Fragment&gt;
+            );
+        &#125;
+            
+    ReactDOM.render(&lt;App /&gt;,
+    document.getElementById(&quot;root&quot;))
+</code></pre>
+<p>4.新建一个js文件,写一个组件,最后要记得export default,然后在需要引入的页面import</p>
+<ul>
+<li><p>Content.js</p>
+<pre><code>   import React from &#39;react&#39;
+   
+   const Content=()=&gt;&#123;
+           const Items=[&#39;A&#39;,&#39;B&#39;,&#39;C&#39;]
+   
+   renturn (
+    &lt;div className=&#39;content&#39;&gt;
+      &#123;items.map((x,i)=&gt;&#123;
+         return&lt;div key=&#123;i&#125;&gt;&#123;x&#125;&lt;/div&gt;
+   &#125;)&#125;
+    &lt;/div&gt; 
+   );
+  &#125;
+  
+  export default Content
+  
+</code></pre>
+</li>
+<li><p>App.js</p>
+<pre><code>  import React from &#39;react&#39;;
+  import ReactDOM from &#39;react-dom&#39;;
+  import Content from &#39;./Content&#39;;
+  import &#39;./index.css&#39;;
+  
+  const Header=()=&gt;&#123;
+       return &lt;header&gt;
+         DEMO
+       &lt;/header&gt;
+      &#125;
+      
+  const Footer=()=&gt;&#123;
+        return &lt;footer&gt;footer&lt;/footer&gt;
+      &#125;
+      
+  const App =( )=&gt;&#123;
+      return (
+          &lt;React.Fragment&gt;
+            &lt;Header /&gt;
+            &lt;Content /&gt;
+            &lt;Footer /&gt;
+           &lt;/React.Fragment&gt;
+          );
+      &#125;
+          
+              
+  ReactDOM.render(&lt;App /&gt;,
+  document.getElementById(&quot;root&quot;))
+</code></pre>
+</li>
+</ul>
+<p>5.children,options属性</p>
+<pre><code>    import React from &#39;react&#39;;
+    import ReactDOM from &#39;react-dom&#39;;
+    import &#39;./index.css&#39;;
+    
+    const Header=()=&gt;&#123;
+         return &lt;header&gt;
+           DEMO
+         &lt;/header&gt;
+        &#125;
+        
+    const Page=(&#123;children&#125;)=&gt;&#123;
+      return&lt;div className=&#39;page&#39;&gt;
+      &#123;children&#125;
+      &lt;/div&gt;
+    &#125;
+        
+    const Page1=()=&gt;&#123;
+      renturn&lt;Page&gt;page1&lt;/Page&gt;
+    &#125;
+    
+    const Page2=()=&gt;&#123;
+     renturn&lt;Page&gt;page2&lt;/Page&gt;
+    &#125;
+
+   const Page3=()=&gt;&#123;
+    renturn&lt;Page&gt;page3&lt;/Page&gt;
+    &#125;
+    
+    const Tabs=(&#123;options&#125;)=&gt;&#123;
+      return &lt;div className=&#39;tabs&#39;&gt;
+        &#123;options.map((x,i)=&gt;&#123;
+        return &lt;div key=&#123;i&#125;&gt;
+           &#123;x.title&#125;
+        &lt;/div&gt;
+        &#125;)&#125;
+      &lt;/div&gt;
+    &#125;
+
+        
+    const App =( )=&gt;&#123;
+        return (
+            &lt;React.Fragment&gt;
+              &lt;Header /&gt;
+              &lt;Page1 /&gt;
+              &lt;Page2 /&gt;
+              &lt;Page3 /&gt;
+              &lt;Tabs options=&#123;[
+              &#123;title:&#39;页面1&#39;&#125;,
+              &#123;title:&#39;页面2&#39;&#125;,
+              &#123;title:&#39;页面3&#39;&#125;
+              ]&#125;&gt;&lt;/Tabs&gt;
+             &lt;/React.Fragment&gt;
+            );
+        &#125;
+            
+                
+    ReactDOM.render(&lt;App /&gt;,
+    document.getElementById(&quot;root&quot;))
+</code></pre>
+<h2 id="React-Hooks-API"><a href="#React-Hooks-API" class="headerlink" title="React Hooks API"></a>React Hooks API</h2><p>1.useState</p>
+<pre><code>    import React,&#123;useState&#125; from &#39;react&#39;;
+    import ReactDOM from &#39;react-dom&#39;;
+    import &#39;./index.css&#39;;
+    
+    const Header=()=&gt;&#123;
+         return &lt;header&gt;
+           DEMO
+         &lt;/header&gt;
+        &#125;
+        
+    const Page=(&#123;children&#125;)=&gt;&#123;
+      return&lt;div className=&#39;page&#39;&gt;
+      &#123;children&#125;
+      &lt;/div&gt;
+    &#125;
+        
+    const Page1=()=&gt;&#123;
+      renturn&lt;Page&gt;page1&lt;/Page&gt;
+    &#125;
+    
+    const Page2=()=&gt;&#123;
+     renturn&lt;Page&gt;page2&lt;/Page&gt;
+    &#125;
+
+    const Page3=()=&gt;&#123;
+    renturn&lt;Page&gt;page3&lt;/Page&gt;
+    &#125;
+    
+    const Tabs=(&#123;options,onTabClick&#125;)=&gt;&#123;
+      return &lt;div className=&#39;tabs&#39;&gt;
+        &#123;options.map((x,i)=&gt;&#123;
+        return &lt;div onClick=&#123;()=&gt;&#123;
+         onTabClick(x)
+        &#125;&#125;
+        className=&#39;tabs-item&#39; key=&#123;i&#125;&gt;
+           &#123;x.title&#125;
+        &lt;/div&gt;
+        &#125;)&#125;
+      &lt;/div&gt;
+    &#125;
+
+        
+    const App =( )=&gt;&#123;
+        const [tabkey,setTabKey]=useState(&#39;page1&#39;)
+        return (
+            &lt;React.Fragment&gt;
+              &lt;Header /&gt;
+              &#123;tabkey ===&#39;page1&#39;&amp;&amp;&lt;Page1/&gt;&#125;
+              &#123;tabkey ===&#39;page1&#39;&amp;&amp;&lt;Page1/&gt;&#125;
+              &#123;tabkey ===&#39;page1&#39;&amp;&amp;&lt;Page1/&gt;&#125;
+              &lt;Tabs 
+              onTabClick=&#123;(x)=&gt;&#123;
+                 setTabKey(x.key)
+              &#125;&#125;
+              
+              options=&#123;[
+              &#123;title:&quot;页面1&quot;,key:&#39;page1&#39;&#125;,
+              &#123;title:&quot;页面2&quot;,key:&#39;page2&#39;&#125;,
+              &#123;title:&quot;页面3&quot;,key:&#39;page3&#39;&#125;
+              ]&#125;&gt;&lt;/Tabs&gt;
+             &lt;/React.Fragment&gt;
+            );
+        &#125;
+            
+                
+    ReactDOM.render(&lt;App /&gt;,
+    document.getElementById(&quot;root&quot;))
+</code></pre>
+<p>2.useEffect</p>
+<p> 依赖[deps]变化的作用</p>
+<pre><code>    import React,&#123;useEffect, useState&#125; from &#39;react&#39;
+    
+    export default function Example()&#123;
+      const [count,setCount]=useState(0);
+    
+      useEffect(()=&gt;&#123;
+        if (count&gt;5)&#123;
+          window.location.href=&quot;https://www.baidu.com/&quot;
+        &#125;
+      &#125;,[count]);
+    
+      return(
+        &lt;div&gt;
+          &lt;p&gt;You clicked &#123;count&#125;times&lt;/p&gt;
+          &lt;button onClick=&#123;()=&gt;setCount(count+1)&#125;&gt;Click me&lt;/button&gt;
+        &lt;/div&gt;
+      );
+    &#125;
+    
+</code></pre>
+<p>3.useContext</p>
+<p> 上下文(Context)设计目的是为了共享那些对于一个组件树而言是“全局”的数据，例如当前认证的用户、主题或首选语言。</p>
+<pre><code>    import React,&#123;useContext, useState&#125; from &#39;react&#39;
+    
+    const themes = &#123;
+      light:&#123;foreground:&quot;#000000&quot;,background:&quot;#eeeeee&quot;&#125;,
+      dark:&#123;foreground:&quot;#ffffff&quot;,background:&quot;222222&quot;&#125;
+    &#125;;
+    
+    const ThemeContext = React.createContext(
+      &#123;
+        theme:themes.light,
+        toggle:()=&gt;&#123;&#125;
+      &#125;
+    )
+    export default () =&gt;&#123;
+      const [theme,setTheme]=useState(themes.light)
+      return &lt;ThemeContext.Provider value=&#123;&#123;
+		    theme,
+		    toggle:()=>&#123;
+		      setTheme(theme=>&#123;setTheme(theme===themes.light?themes.dark:light)
+		      &#125;)
+		    &#125;
+		  &#125;&#125;&gt;
+        &lt;Toolbar /&gt;;
+      &lt;/ThemeContext.Provider&gt;
+    &#125;;
+    
+    const Toolbar =()=&gt;&#123;
+      return &lt; ThemedButton/&gt;
+    &#125;;
+    
+    const ThemedButton =()=&gt;&#123;
+      const context=useContext(ThemeContext);
+    
+      return(
+      &lt;button 
+        style=&#123;&#123;
+		      fontSize:"32px",
+		      color:context.theme.foreground,
+		      backgroundColor : context.theme.background
+		    &#125;&#125;
+        onClick=&#123;
+          ()=&gt;&#123;
+            context.toggle();
+          &#125;
+        &#125;
+      &gt;
+        Click Me!
+        &lt;/button&gt;);
+    &#125;;
+    
+</code></pre>
+<p>4.useReducer</p>
+<pre><code>    import React, &#123; useReducer &#125; from &#39;react&#39;
+    
+    function reducer (state,action)&#123;
+      switch(action.type)&#123;
+        case &quot;add&quot;:
+          return state+1;
+        case &quot;sub&quot;:
+          return state-1;
+        default:
+          throw &quot;...&quot;
+      &#125;
+    &#125;
+    export default function Counter()&#123;
+      const [counter,dispatch]=useReducer(reducer,0);
+      return(
+        &lt;div&gt;
+          Your counter is :&#123;counter&#125;
+          &lt;button onClick=&#123;()=&gt;dispatch(&#123;type:&quot;add&quot;&#125;)&#125;&gt;+&lt;/button&gt;
+          &lt;button onClick=&#123;()=&gt;dispatch(&#123;type:&quot;sub&quot;&#125;)&#125;&gt;-&lt;/button&gt;
+        &lt;/div&gt;
+      );
+    &#125;
+    
+</code></pre>
+<p>5.useRef</p>
+<ul>
+<li><p>引用React管理以外的对象,例如:focus、媒体对象操作等,通常搭配useEffect.</p>
+<pre><code>  import React, &#123; useRef &#125; from &quot;react&quot;
+  
+  export default function UseRefExample()&#123;
+    const refInput = useRef
+    return(
+      &lt;div&gt;
+        &lt;input ref=&#123;refInput&#125;/&gt;
+        &lt;button onClick=&#123;()=&gt;&#123;refInput.current.focus();&#125;&#125;&gt;Focus&lt;/button&gt;
+      &lt;/div&gt;
+    );
+  &#125;
+  
+</code></pre>
+</li>
+<li><p>附带作用:方便地保存值</p>
+<pre><code>  import React, &#123; useRef, useState &#125; from &quot;react&quot;
+  
+  export default function UseRefExample()&#123;
+    const [counter,setCounter]=useState(0)
+    let prev = useRef(null);
+    return(
+      &lt;div&gt;
+        &lt;p&gt;当前值:&#123;counter&#125;&lt;/p&gt;
+        &lt;p&gt;之前的值:&#123;prev.current&#125;&lt;/p&gt;
+        &lt;button onClick=&#123;()=&gt;&#123;
+          prev.current=counter;
+          setCounter(x=&gt;x+1);
+          &#125;
+         &#125;
+        &gt;
+          Click me to add
+          &lt;/button&gt;
+        &lt;button onClick=&#123;()=&gt;&#123;
+          prev.current=counter;
+          setCounter(x=&gt;x-1);
+          &#125;
+         &#125;
+        &gt;
+          Click me to remove
+          &lt;/button&gt;
+      &lt;/div&gt;
+    );
+  &#125;
+  
+</code></pre>
+</li>
+</ul>
+<p>6.useCallback,useMemo</p>
+<ul>
+<li><p>useMemo:缓存一个值</p>
+<pre><code>   import &#123; useMemo, useState &#125; from &quot;react&quot;;
+   
+   const UseMemoExample =()=&gt;&#123;
+   const [count,setCount]=useState(0);
+   const memorizedText = useMemo(()=&gt;&#123;
+      console.log(&quot;run useMemo function&quot;);
+      return &#39;this is a memorized text $&#123;Date.now()&#125;&#39;;
+  &#125;,[Math.floor(count/10)]);
+    return(
+      &lt;div&gt;
+        &#123;memorizedText&#125;
+        &lt;p&gt;You clicked &#123;count&#125; times&lt;/p&gt;
+        &lt;button onClick=&#123;()=&gt;setCount(count+1)&#125;&gt;Click me&lt;/button&gt;
+      &lt;/div&gt;
+    );
+  &#125;;
+  
+  export default UseMemoExample;
+  
+</code></pre>
+</li>
+<li><p>useCallback:缓存一个函数</p>
+<p>useCallback(fn, deps) 相当于 useMemo(() =&gt; fn, deps)。</p>
+<pre><code>   const memoizedCallback = useCallback(
+    () =&gt; &#123;
+      doSomething(a, b);
+    &#125;,
+    [a, b],
+  );
+</code></pre>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">React</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/02/26/%E5%AD%A6%E4%B9%A0React-Hook/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-从零开始搭建个人博客" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -496,525 +1005,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2021/02/03/hello-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-学习React-Hook" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/02/01/%E5%AD%A6%E4%B9%A0React-Hook/">学习React Hook</a>
-    </h1>
-  
-
-        
-        <a href="/2021/02/01/%E5%AD%A6%E4%B9%A0React-Hook/" class="archive-article-date">
-  	<time datetime="2021-02-01T06:13:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="几个觉悟"><a href="#几个觉悟" class="headerlink" title="几个觉悟"></a>几个觉悟</h2><ol>
-<li><p>开发的时候不用再过多考虑生命周期了!</p>
-</li>
-<li><p>一个函数就是一个组件,各个组件构成页面</p>
-<pre><code> function App()&#123;
- return &lt;h1&gt;Hello&lt;/h1&gt;
- &#125;
-</code></pre>
-</li>
-<li><p>写代码是为了读的,React Hook就是把行为映射到页面上,让人更容易理解代码背后的业务逻辑.</p>
-</li>
-</ol>
-<h2 id="比较常用的react语法"><a href="#比较常用的react语法" class="headerlink" title="比较常用的react语法"></a>比较常用的react语法</h2><ol>
-<li><p>箭头函数</p>
-<pre><code> const App =()=&gt;&#123;
- renturn &lt;h1&gt;Hello&lt;/h1&gt;
- &#125;
-</code></pre>
-</li>
-<li><p>react封装,属性的嵌套和传递</p>
-<pre><code> const App =(&#123;color,onClick&#125;)=&gt;&#123;
- return (
-   &lt;h1
-    onClick=&#123;onClick&#125;
-    style=&#123;&#123;
-		     color,
-		     marginLeft:'10px'
-		   &#125;&#125;
-   &gt;
-    Hello
-   &lt;h1&gt;
-  );
- &#125;
- 
- const handleClick=()=&gt;&#123;
-  console.log(&#39;clicked me&#39;)
- &#125;
- 
- ReactDOM.render(&lt;App color=&#39;red&#39; onClick=&#123;handleClick&#125;/&gt;,
- document.getElementById(&quot;root&quot;))
-</code></pre>
-</li>
-</ol>
-<ol start="3">
-<li><p>组件套用前要定义、列表(map)要定义key</p>
-<pre><code> const Header=()=&gt;&#123;
-  return &lt;header&gt;
-    DEMO
-  &lt;/header&gt;
- &#125;
- 
- const Content=()=&gt;&#123;
-  const Items=[&#39;A&#39;,&#39;B&#39;,&#39;C&#39;]
-  
-  renturn (
-  &lt;div className=&#39;content&#39;&gt;
-  &#123;items.map((x,i)=&gt;&#123;
-    return&lt;div key=&#123;i&#125;&gt;&#123;x&#125;&lt;/div&gt;
-  &#125;)&#125;
-  &lt;/div&gt; 
-  );
- &#125;
- 
- const Footer=()=&gt;&#123;
-   return &lt;footer&gt;footer&lt;/footer&gt;
- &#125;
- 
-  const App =()=&gt;&#123;
-     return (
-         &lt;React.Fragment&gt;
-           &lt;Header /&gt;
-           &lt;Content /&gt;
-           &lt;Footer /&gt;
-          &lt;/React.Fragment&gt;
-         );
-     &#125;
-         
- ReactDOM.render(&lt;App /&gt;,
- document.getElementById(&quot;root&quot;))
-</code></pre>
-</li>
-<li><p>新建一个js文件,写一个组件,最后要记得export default,然后在需要引入的页面import</p>
-<p>Content.js</p>
-<pre><code>  import React from &#39;react&#39;
-  
-  const Content=()=&gt;&#123;
-          const Items=[&#39;A&#39;,&#39;B&#39;,&#39;C&#39;]
-  
-  renturn (
-   &lt;div className=&#39;content&#39;&gt;
-     &#123;items.map((x,i)=&gt;&#123;
-        return&lt;div key=&#123;i&#125;&gt;&#123;x&#125;&lt;/div&gt;
-  &#125;)&#125;
-   &lt;/div&gt; 
-  );
- &#125;
- 
- export default Content
- 
-</code></pre>
-<p> App.js</p>
-<pre><code> import React from &#39;react&#39;;
- import ReactDOM from &#39;react-dom&#39;;
- import Content from &#39;./Content&#39;;
- import &#39;./index.css&#39;;
- 
- const Header=()=&gt;&#123;
-      return &lt;header&gt;
-        DEMO
-      &lt;/header&gt;
-     &#125;
-     
- const Footer=()=&gt;&#123;
-       return &lt;footer&gt;footer&lt;/footer&gt;
-     &#125;
-     
- const App =( )=&gt;&#123;
-     return (
-         &lt;React.Fragment&gt;
-           &lt;Header /&gt;
-           &lt;Content /&gt;
-           &lt;Footer /&gt;
-          &lt;/React.Fragment&gt;
-         );
-     &#125;
-         
-             
- ReactDOM.render(&lt;App /&gt;,
- document.getElementById(&quot;root&quot;))
-</code></pre>
-</li>
-</ol>
-<p>5.children,options属性</p>
-<pre><code>    import React from &#39;react&#39;;
-    import ReactDOM from &#39;react-dom&#39;;
-    import &#39;./index.css&#39;;
-    
-    const Header=()=&gt;&#123;
-         return &lt;header&gt;
-           DEMO
-         &lt;/header&gt;
-        &#125;
-        
-    const Page=(&#123;children&#125;)=&gt;&#123;
-      return&lt;div className=&#39;page&#39;&gt;
-      &#123;children&#125;
-      &lt;/div&gt;
-    &#125;
-        
-    const Page1=()=&gt;&#123;
-      renturn&lt;Page&gt;page1&lt;/Page&gt;
-    &#125;
-    
-    const Page2=()=&gt;&#123;
-     renturn&lt;Page&gt;page2&lt;/Page&gt;
-    &#125;
-
-   const Page3=()=&gt;&#123;
-    renturn&lt;Page&gt;page3&lt;/Page&gt;
-    &#125;
-    
-    const Tabs=(&#123;options&#125;)=&gt;&#123;
-      return &lt;div className=&#39;tabs&#39;&gt;
-        &#123;options.map((x,i)=&gt;&#123;
-        return &lt;div key=&#123;i&#125;&gt;
-           &#123;x.title&#125;
-        &lt;/div&gt;
-        &#125;)&#125;
-      &lt;/div&gt;
-    &#125;
-
-        
-    const App =( )=&gt;&#123;
-        return (
-            &lt;React.Fragment&gt;
-              &lt;Header /&gt;
-              &lt;Page1 /&gt;
-              &lt;Page2 /&gt;
-              &lt;Page3 /&gt;
-              &lt;Tabs options=&#123;[
-              &#123;title:&#39;页面1&#39;&#125;,
-              &#123;title:&#39;页面2&#39;&#125;,
-              &#123;title:&#39;页面3&#39;&#125;
-              ]&#125;&gt;&lt;/Tabs&gt;
-             &lt;/React.Fragment&gt;
-            );
-        &#125;
-            
-                
-    ReactDOM.render(&lt;App /&gt;,
-    document.getElementById(&quot;root&quot;))
-</code></pre>
-<h2 id="React-Hooks-API"><a href="#React-Hooks-API" class="headerlink" title="React Hooks API"></a>React Hooks API</h2><ol>
-<li><p>useState</p>
-<pre><code> import React,&#123;useState&#125; from &#39;react&#39;;
- import ReactDOM from &#39;react-dom&#39;;
- import &#39;./index.css&#39;;
- 
- const Header=()=&gt;&#123;
-      return &lt;header&gt;
-        DEMO
-      &lt;/header&gt;
-     &#125;
-     
- const Page=(&#123;children&#125;)=&gt;&#123;
-   return&lt;div className=&#39;page&#39;&gt;
-   &#123;children&#125;
-   &lt;/div&gt;
- &#125;
-     
- const Page1=()=&gt;&#123;
-   renturn&lt;Page&gt;page1&lt;/Page&gt;
- &#125;
- 
- const Page2=()=&gt;&#123;
-  renturn&lt;Page&gt;page2&lt;/Page&gt;
- &#125;
-
- const Page3=()=&gt;&#123;
- renturn&lt;Page&gt;page3&lt;/Page&gt;
- &#125;
- 
- const Tabs=(&#123;options,onTabClick&#125;)=&gt;&#123;
-   return &lt;div className=&#39;tabs&#39;&gt;
-     &#123;options.map((x,i)=&gt;&#123;
-     return &lt;div onClick=&#123;()=&gt;&#123;
-      onTabClick(x)
-     &#125;&#125;
-     className=&#39;tabs-item&#39; key=&#123;i&#125;&gt;
-        &#123;x.title&#125;
-     &lt;/div&gt;
-     &#125;)&#125;
-   &lt;/div&gt;
- &#125;
-
-     
- const App =( )=&gt;&#123;
-     const [tabkey,setTabKey]=useState(&#39;page1&#39;)
-     return (
-         &lt;React.Fragment&gt;
-           &lt;Header /&gt;
-           &#123;tabkey ===&#39;page1&#39;&amp;&amp;&lt;Page1/&gt;&#125;
-           &#123;tabkey ===&#39;page1&#39;&amp;&amp;&lt;Page1/&gt;&#125;
-           &#123;tabkey ===&#39;page1&#39;&amp;&amp;&lt;Page1/&gt;&#125;
-           &lt;Tabs 
-           onTabClick=&#123;(x)=&gt;&#123;
-              setTabKey(x.key)
-           &#125;&#125;
-           
-           options=&#123;[
-           &#123;title:&quot;页面1&quot;,key:&#39;page1&#39;&#125;,
-           &#123;title:&quot;页面2&quot;,key:&#39;page2&#39;&#125;,
-           &#123;title:&quot;页面3&quot;,key:&#39;page3&#39;&#125;
-           ]&#125;&gt;&lt;/Tabs&gt;
-          &lt;/React.Fragment&gt;
-         );
-     &#125;
-         
-             
- ReactDOM.render(&lt;App /&gt;,
- document.getElementById(&quot;root&quot;))
-</code></pre>
-</li>
-<li><p>useEffect</p>
-<p>依赖[deps]变化的作用</p>
-<pre><code> import React,&#123;useEffect, useState&#125; from &#39;react&#39;
- 
- export default function Example()&#123;
-   const [count,setCount]=useState(0);
- 
-   useEffect(()=&gt;&#123;
-     if (count&gt;5)&#123;
-       window.location.href=&quot;https://www.baidu.com/&quot;
-     &#125;
-   &#125;,[count]);
- 
-   return(
-     &lt;div&gt;
-       &lt;p&gt;You clicked &#123;count&#125;times&lt;/p&gt;
-       &lt;button onClick=&#123;()=&gt;setCount(count+1)&#125;&gt;Click me&lt;/button&gt;
-     &lt;/div&gt;
-   );
- &#125;
- 
-</code></pre>
-</li>
-<li><p>useContext</p>
-<p>上下文(Context)设计目的是为了共享那些对于一个组件树而言是“全局”的数据，例如当前认证的用户、主题或首选语言。</p>
-<pre><code> import React,&#123;useContext, useState&#125; from &#39;react&#39;
- 
- const themes = &#123;
-   light:&#123;foreground:&quot;#000000&quot;,background:&quot;#eeeeee&quot;&#125;,
-   dark:&#123;foreground:&quot;#ffffff&quot;,background:&quot;222222&quot;&#125;
- &#125;;
- 
- const ThemeContext = React.createContext(
-   &#123;
-     theme:themes.light,
-     toggle:()=&gt;&#123;&#125;
-   &#125;
- )
- export default () =&gt;&#123;
-   const [theme,setTheme]=useState(themes.light)
-   return &lt;ThemeContext.Provider value=&#123;&#123;
-		    theme,
-		    toggle:()=>&#123;
-		      setTheme(theme=>&#123;setTheme(theme===themes.light?themes.dark:light)
-		      &#125;)
-		    &#125;
-		  &#125;&#125;&gt;
-     &lt;Toolbar /&gt;;
-   &lt;/ThemeContext.Provider&gt;
- &#125;;
- 
- const Toolbar =()=&gt;&#123;
-   return &lt; ThemedButton/&gt;
- &#125;;
- 
- const ThemedButton =()=&gt;&#123;
-   const context=useContext(ThemeContext);
- 
-   return(
-   &lt;button 
-     style=&#123;&#123;
-		      fontSize:"32px",
-		      color:context.theme.foreground,
-		      backgroundColor : context.theme.background
-		    &#125;&#125;
-     onClick=&#123;
-       ()=&gt;&#123;
-         context.toggle();
-       &#125;
-     &#125;
-   &gt;
-     Click Me!
-     &lt;/button&gt;);
- &#125;;
- 
-</code></pre>
-</li>
-<li><p>useReducer</p>
-<pre><code> import React, &#123; useReducer &#125; from &#39;react&#39;
- 
- function reducer (state,action)&#123;
-   switch(action.type)&#123;
-     case &quot;add&quot;:
-       return state+1;
-     case &quot;sub&quot;:
-       return state-1;
-     default:
-       throw &quot;...&quot;
-   &#125;
- &#125;
- export default function Counter()&#123;
-   const [counter,dispatch]=useReducer(reducer,0);
-   return(
-     &lt;div&gt;
-       Your counter is :&#123;counter&#125;
-       &lt;button onClick=&#123;()=&gt;dispatch(&#123;type:&quot;add&quot;&#125;)&#125;&gt;+&lt;/button&gt;
-       &lt;button onClick=&#123;()=&gt;dispatch(&#123;type:&quot;sub&quot;&#125;)&#125;&gt;-&lt;/button&gt;
-     &lt;/div&gt;
-   );
- &#125;
- 
-</code></pre>
-</li>
-<li><p>useRef</p>
-</li>
-<li><p>引用React管理以外的对象,例如:focus、媒体对象操作等,通常搭配useEffect.</p>
-<pre><code>import React, &#123; useRef &#125; from &quot;react&quot;
-
-export default function UseRefExample()&#123;
-  const refInput = useRef
-  return(
-    &lt;div&gt;
-      &lt;input ref=&#123;refInput&#125;/&gt;
-      &lt;button onClick=&#123;()=&gt;&#123;refInput.current.focus();&#125;&#125;&gt;Focus&lt;/button&gt;
-    &lt;/div&gt;
-  );
-&#125;
-</code></pre>
-</li>
-<li><p>附带作用:方便地保存值</p>
-<pre><code>import React, &#123; useRef, useState &#125; from &quot;react&quot;
-
-export default function UseRefExample()&#123;
-  const [counter,setCounter]=useState(0)
-  let prev = useRef(null);
-  return(
-    &lt;div&gt;
-      &lt;p&gt;当前值:&#123;counter&#125;&lt;/p&gt;
-      &lt;p&gt;之前的值:&#123;prev.current&#125;&lt;/p&gt;
-      &lt;button onClick=&#123;()=&gt;&#123;
-        prev.current=counter;
-        setCounter(x=&gt;x+1);
-        &#125;
-       &#125;
-      &gt;
-        Click me to add
-        &lt;/button&gt;
-      &lt;button onClick=&#123;()=&gt;&#123;
-        prev.current=counter;
-        setCounter(x=&gt;x-1);
-        &#125;
-       &#125;
-      &gt;
-        Click me to remove
-        &lt;/button&gt;
-    &lt;/div&gt;
-  );
-&#125;
-</code></pre>
-</li>
-<li><p>useCallback,useMemo</p>
-<p>useMemo:缓存一个值</p>
-<pre><code>  import &#123; useMemo, useState &#125; from &quot;react&quot;;
-  
-  const UseMemoExample =()=&gt;&#123;
-  const [count,setCount]=useState(0);
-  const memorizedText = useMemo(()=&gt;&#123;
-     console.log(&quot;run useMemo function&quot;);
-     return &#39;this is a memorized text $&#123;Date.now()&#125;&#39;;
- &#125;,[Math.floor(count/10)]);
-   return(
-     &lt;div&gt;
-       &#123;memorizedText&#125;
-       &lt;p&gt;You clicked &#123;count&#125; times&lt;/p&gt;
-       &lt;button onClick=&#123;()=&gt;setCount(count+1)&#125;&gt;Click me&lt;/button&gt;
-     &lt;/div&gt;
-   );
- &#125;;
- 
- export default UseMemoExample;
- 
-</code></pre>
-<p>useCallback:缓存一个函数</p>
-<p>useCallback(fn, deps) 相当于 useMemo(() =&gt; fn, deps)。</p>
-<pre><code>  const memoizedCallback = useCallback(
-   () =&gt; &#123;
-     doSomething(a, b);
-   &#125;,
-   [a, b],
- );
-</code></pre>
-</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">React</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/02/01/%E5%AD%A6%E4%B9%A0React-Hook/">展开全文 >></a>
         </p>
       
 
